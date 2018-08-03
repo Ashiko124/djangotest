@@ -59,7 +59,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'djangotest.urls'
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 TEMPLATES = [
     {
@@ -133,6 +133,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 from rest_framework.authentication import TokenAuthentication
+import django_heroku
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -142,3 +143,5 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':
     'rest_framework.authentication.TokenAuthentication'
 }
+
+django_heroku.settings(locals())
