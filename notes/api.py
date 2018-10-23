@@ -2,8 +2,7 @@
 from rest_framework import serializers, viewsets
 from .models import PersonalNote
 
-class personalNoteSerlializer(serializers.HyperlinkedModelSerializer):
-
+class PersonalNoteSerializer(serializers.HyperlinkedModelSerializer):
     def create(self, validated_data):
         #import pdb; pdb.set_trace()
         user = self.context['request'].user
@@ -15,9 +14,8 @@ class personalNoteSerlializer(serializers.HyperlinkedModelSerializer):
         fields = ('title', 'content', 'url')
 
 class PersonalNoteViewSet(viewsets.ModelViewSet):
-
-    serializer_class = personalNoteSerlializer
-    queryset = PersonalNote.objects.none()
+    serializer_class = PersonalNoteSerializer
+    queryset = PersonalNote.objects.all()
 
 
     def get_queryset(self):
@@ -25,5 +23,5 @@ class PersonalNoteViewSet(viewsets.ModelViewSet):
         if user.is_anonymous:
             return PersonalNote.objects.none()
         else:
-            return PersonalNote.objects.filter(user = user)
+            return PersonalNote.objects.filter(user=user)
         
