@@ -136,7 +136,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 from rest_framework.authentication import TokenAuthentication
-import django_heroku
 
 REST_FRAMEWORK = {
    'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -149,5 +148,5 @@ REST_FRAMEWORK = {
    ],
 }
 
-django_heroku.settings(locals())
-del DATABASES['default']['OPTIONS']['sslmode']
+# django_heroku.settings(locals())
+# del DATABASES['default']['OPTIONS']['sslmode']
